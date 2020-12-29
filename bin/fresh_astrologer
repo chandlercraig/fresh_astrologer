@@ -3,3 +3,5 @@
 require_relative '../lib/environment'
 
 FreshAstrologer::CLI.new.call
+
+Scraper.new.scrape_fresh_in_theaters
