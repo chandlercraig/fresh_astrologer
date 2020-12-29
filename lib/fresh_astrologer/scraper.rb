@@ -5,7 +5,7 @@ class Scraper
     js_doc = browser.element(css: ".mb-movie").wait_until(&:present?)
     news = Nokogiri::HTML(js_doc.inner_html)
     desired_result = doc.css('.mb-movie')
-    puts desired_result
+    # returns array of movies
     binding.pry
   end
 
