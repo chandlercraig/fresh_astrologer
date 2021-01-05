@@ -5,5 +5,3 @@ Dir["#{__dir__}/../lib/**/*.rb"].each {|file| require file }
 
 
 CLI.new.call
-
-Scraper.new.scrape_fresh_in_theaters

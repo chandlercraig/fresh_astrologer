@@ -1,8 +1,7 @@
 class CLI
 
   def call
-    puts "Welcome to Fresh Astrologer!"
-    puts "These are the freshest movies in theaters:"
+    puts "Welcome to Fresh Astrologer, a Rotten Tomatoes™ trivia game for the new-age film buff!"
     get_movie_titles
     list_titles
     get_user_movie
@@ -18,6 +17,8 @@ class CLI
   end
 
   def get_user_movie
+    puts "These are the freshest movies in theaters:" 
+    Scraper.new.scrape_fresh_in_theaters
     puts "Which movie interests you?"
     # chosen_movie = gets.strip
     # if @movies.include? {chosen_movie}
