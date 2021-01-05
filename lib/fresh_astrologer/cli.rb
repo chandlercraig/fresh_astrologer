@@ -1,4 +1,4 @@
-class FreshAstrologer::CLI
+class CLI
 
   def call
     puts "Welcome to Fresh Astrologer!"
