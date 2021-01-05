@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
+Dir["#{__dir__}/../lib/**/*.rb"].each {|file| require file }
 
-require_relative '../lib/environment'
+# require_relative '../lib/environment'
 
-FreshAstrologer::CLI.new.call
+
+CLI.new.call
 
 Scraper.new.scrape_fresh_in_theaters
