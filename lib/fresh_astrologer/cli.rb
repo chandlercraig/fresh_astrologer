@@ -7,12 +7,13 @@ class CLI
     list_movie_titles
     puts "----------"
     get_user_movie
-    #get_director_info
+    #get_actor_info
   end
 
   def list_movie_titles
-    @@movies = Scraper.new.scrape_fresh_in_theaters
-    @@movies.each_with_index {|movie, index| puts "#{index+1}. #{movie}"}
+    scrape_fresh_in_theaters
+    Movie.titles_arr
+    Movie.titles_arr.each_with_index {|movie, index| puts "#{index+1}. #{movie}"}
   end
 
   def get_user_movie
@@ -20,30 +21,31 @@ class CLI
     @@chosen_movie = gets.strip
     @@chosen_movie
     # add functionality for entering index number as movie selection?
-    if @@movies.include? (@@chosen_movie)
-      get_director_info
+    if Movie.titles_arr.include? (@@chosen_movie)
+      get_actor_info
     else
       puts "invalid entry"
       get_user_movie
     end
   end
 
-  def get_director_info
+  def get_actor_info
     puts "----------"
     puts "You've chosen #{@@chosen_movie}. Great choice!"
-    puts "Would you like to guess the director? (enter y or n)"
-    @chosen_dir = gets.strip
-    @chosen_dir
-    if @chosen_dir == "y"
-      puts "Enter directors name below"
-    elsif @chosen_dir == "n"
-      puts "No shame in that game! The director of #{@@chosen_movie} is..."
+    puts "Would you like to guess who the lead actor is? (enter y or n)"
+    @actor_guess = gets.strip
+    @actor_guess
+    if @actor_guess == "y"
+      puts "Enter actor's name below"
+      # gets_actor_name
+    elsif @actor_guess == "n"
+      puts "No shame in that game! The lead actor in #{@@chosen_movie} is..."
     else
       puts "invalid entry"
-      get_director_info
+      get_actor_info
     end
-    # use scrape_wiki to get director name and birthday, then hardcode star sign
-    # do all of this in a Director class, then pipe into this method
+    # use scrape_wiki to get actor name and birthday, then hardcode star sign
+    # do all of this in an Actor class, then pipe into this method
   end
 
 end
