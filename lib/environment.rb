@@ -9,6 +9,7 @@ require 'watir'
 require 'nokogiri'
 require 'pry'
 require 'curb'
+require 'date'
 
 module FreshAstrologer
   class Error < StandardError; end

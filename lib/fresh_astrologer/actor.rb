@@ -1,42 +1,37 @@
 class Actor
-    attr_accessor :name, :movie, :birthday
+    attr_accessor :name, :fresh_movie, :birthday
     attr_reader :star_sign
 
     @@all = []
     
-    def initialize(name, birthday)
+    def initialize(name, birthday, fresh_movie)
         @name = name
         @birthday = birthday
+        @fresh_movie = fresh_movie
         save
     end
  
     def star_sign
-        # sign variables will equal date ranges
-        # if aquarius.include?(self.birthday)
-        #     puts "#{self.name} is an aquarius"
-        #  elsif pisces.include?(self.birthday)
-        #     puts "#{self.name} is a pisces"
-        #  elsif aries.include?(self.birthday)
-        #     puts "#{self.name} is an aries"
-        #  elsif taurus.include?(self.birthday)
-        #     puts "#{self.name} is a taurus"
-        #  elsif gemini.include?(self.birthday)
-        #     puts "#{self.name} is a gemini"
-        #  elsif cancer.include?(self.birthday)
-        #     puts "#{self.name} is a cancer"
-        #  elsif leo.include?(self.birthday)
-        #     puts "#{self.name} is a leo"
-        #  elsif virgo.include?(self.birthday)
-        #     puts "#{self.name} is a virgo"
-        #  elsif libra.include?(self.birthday)
-        #     puts "#{self.name} is a libra"
-        #  elsif scorpio.include?(self.birthday)
-        #     puts "#{self.name} is a scorpio"
-        #  elsif sagittarius.include?(self.birthday)
-        #     put "#{self.name} is a sagittarius"
-        #  elsif capricorn.include?(self.birthday)
-        #     put "#{self.name} is a capricorn"
-        # end       
+        # .map{|date| date.strftime("(%Y-%m-%d)")}
+        astro_hash = 
+            {aquarius: ["01-20".."02-18"], 
+             pisces: ["02-19".."03-20"], 
+             aries: ["03-21".."04-19"],
+             taurus: ["04-20".."05-20"],
+             gemini: ["05-21".."06-20"],
+             cancer: ["06-21".."07-22"],
+             leo: ["07-23".."08-22"],
+             virgo: ["08-23".."09-22"],
+             libra: ["09-23".."10-22"],
+             scorpio: ["10-23".."11-21"],
+             sagittarius: ["11-22".."12-21"],
+             capricorn: ["12-22".."01-19"]
+            }
+        astro_hash.each do |key, array|
+            if array.include?(self.birthday)
+                puts "#{self.name} is a #{key}"
+            end
+        end 
     end
 
     def self.all

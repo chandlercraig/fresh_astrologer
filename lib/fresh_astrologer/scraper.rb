@@ -24,12 +24,13 @@ class Scraper
     scrape_movie
     Movie.all.each do |movie|
       actor = movie.lead_actor
+      movie_title = movie.title
       if actor != nil
         lead_name = actor.gsub(" ","_")
         url = Curl.get("https://en.wikipedia.org/wiki/" + "#{lead_name}")
         html = Nokogiri::HTML(url.body_str)
         bday = html.css(".bday").inner_html
-        Actor.new(actor, bday)
+        Actor.new(actor, bday, movie_title)
       end 
     end 
     binding.pry
