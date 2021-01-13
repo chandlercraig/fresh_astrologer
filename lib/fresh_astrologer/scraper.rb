@@ -33,7 +33,6 @@ class Scraper
         Actor.new(actor, bday, movie_title)
       end 
     end 
-    binding.pry
   end
 
   

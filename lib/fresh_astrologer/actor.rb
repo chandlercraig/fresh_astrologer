@@ -1,6 +1,5 @@
 class Actor
     attr_accessor :name, :fresh_movie, :birthday
-    attr_reader :star_sign
 
     @@all = []
     
@@ -11,25 +10,29 @@ class Actor
         save
     end
  
-    def star_sign
-        # .map{|date| date.strftime("(%Y-%m-%d)")}
+    def star_sign_finder
+        sign = []
         astro_hash = 
-            {aquarius: ["01-20".."02-18"], 
-             pisces: ["02-19".."03-20"], 
-             aries: ["03-21".."04-19"],
-             taurus: ["04-20".."05-20"],
-             gemini: ["05-21".."06-20"],
-             cancer: ["06-21".."07-22"],
-             leo: ["07-23".."08-22"],
-             virgo: ["08-23".."09-22"],
-             libra: ["09-23".."10-22"],
-             scorpio: ["10-23".."11-21"],
-             sagittarius: ["11-22".."12-21"],
-             capricorn: ["12-22".."01-19"]
+            {Aquarius: (Date.parse('20-1-2020')..Date.parse('18-2-2020')).map{|date| date.strftime("%m-%d")},
+             Pisces: (Date.parse('19-2-2020')..Date.parse('20-3-2020')).map{|date| date.strftime("%m-%d")}, 
+             Aries: (Date.parse('21-3-2020')..Date.parse('19-4-2020')).map{|date| date.strftime("%m-%d")},
+             Taurus: (Date.parse('20-4-2020')..Date.parse('20-5-2020')).map{|date| date.strftime("%m-%d")},
+             Gemini: (Date.parse('21-5-2020')..Date.parse('20-6-2020')).map{|date| date.strftime("%m-%d")},
+             Cancer: (Date.parse('21-6-2020')..Date.parse('22-7-2020')).map{|date| date.strftime("%m-%d")},
+             Leo: (Date.parse('23-7-2020')..Date.parse('22-8-2020')).map{|date| date.strftime("%m-%d")},
+             Virgo: (Date.parse('23-8-2020')..Date.parse('22-9-2020')).map{|date| date.strftime("%m-%d")},
+             Libra: (Date.parse('23-9-2020')..Date.parse('22-10-2020')).map{|date| date.strftime("%m-%d")},
+             Scorpio: (Date.parse('23-10-2020')..Date.parse('21-11-2020')).map{|date| date.strftime("%m-%d")},
+             Sagittarius: (Date.parse('22-11-2020')..Date.parse('21-12-2020')).map{|date| date.strftime("%m-%d")},
+             Capricorn: (Date.parse('22-12-2020')..Date.parse('19-1-2021')).map{|date| date.strftime("%m-%d")}
             }
         astro_hash.each do |key, array|
-            if array.include?(self.birthday)
-                puts "#{self.name} is a #{key}"
+            if array.include?(self.birthday.match(/.....$/).to_s)
+                sign << "#{key}"
+                sign[0]
+            elsif self.birthday == nil || self.birthday == ""
+                puts "#{self.name} has asked the cosmos to keep their star sign confidential."
+                # puts "Would you like to choose another actor?", then loops back to actor list
             end
         end 
     end
