@@ -1,6 +1,6 @@
 # FreshAstrologer
 
-Guess the names and star signs of Rotten Tomatoes Certified Fresh™ directors.
+Fresh Astrologer is a Ruby Gem film trivia game formatted as a CLI. It uses Rotten Tomatoes' "certified fresh in theaters" film data to allow players to guess names of lead actors and their astrological star signs.
 
 ## Installation
 
@@ -20,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the below into your command line and follow the on-screen prompts:
+
+    $ ./bin/fresh_astrologer
+
+
 
 ## Development
 
