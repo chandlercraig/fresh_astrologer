@@ -5,7 +5,6 @@ class FreshAstrologer::Scraper
     browser.goto("https://www.rottentomatoes.com/browse/cf-in-theaters")
     js_doc = browser.element(css: ".mb-movies").wait_until(&:present?)
     html_mov = Nokogiri::HTML(js_doc.inner_html)
-    browser.close
     html_mov.css(".mb-movie .movieTitle").each {|mov| Movie.titles_arr << mov.text}
   end
 
