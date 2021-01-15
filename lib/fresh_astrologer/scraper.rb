@@ -11,8 +11,8 @@ class FreshAstrologer::Scraper
   def scrape_movie
     scrape_fresh_in_theaters
     Movie.titles_arr.each do |title|
-      mov_title = title.downcase.gsub(/[^\w\s]/, '').gsub!(" ","_")
-      url = Curl.get("https://www.rottentomatoes.com/m/" + "#{mov_title}")
+      url_mov_title = title.downcase.gsub(/[^\w\s]/, '').gsub!(" ","_")
+      url = Curl.get("https://www.rottentomatoes.com/m/" + "#{url_mov_title}")
       html = Nokogiri::HTML(url.body_str)
       actor = html.css("meta[name=description]").to_s.match(/(?<=\()[^\)]+/).to_a[0]
       Movie.new(title, actor)
