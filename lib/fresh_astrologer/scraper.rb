@@ -25,8 +25,8 @@ class FreshAstrologer::Scraper
       actor = movie.lead_actor
       movie_title = movie.title
       if actor != nil
-        lead_name = actor.gsub(" ","_")
-        url = Curl.get("https://en.wikipedia.org/wiki/" + "#{lead_name}")
+        url_lead_actor = actor.gsub(" ","_")
+        url = Curl.get("https://en.wikipedia.org/wiki/" + "#{url_lead_actor}")
         html = Nokogiri::HTML(url.body_str)
         bday = html.css(".bday").inner_html
         Actor.new(actor, bday, movie_title)
