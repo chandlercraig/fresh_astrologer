@@ -1,4 +1,4 @@
-class Scraper
+class FreshAstrologer::Scraper
 
   def scrape_fresh_in_theaters
     browser = Watir::Browser.new

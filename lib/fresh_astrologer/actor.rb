@@ -1,5 +1,5 @@
 class Actor
-    attr_accessor :name, :fresh_movie, :birthday
+    attr_reader :name, :fresh_movie, :birthday
 
     @@all = []
     
@@ -9,32 +9,40 @@ class Actor
         @fresh_movie = fresh_movie
         save
     end
+
+    def create_date_ranges
+        @astro_hash = 
+            {aquarius: ['20-1-2020', '18-2-2020'],
+             pisces: ['19-2-2020', '20-3-2020'], 
+             aries: ['21-3-2020', '19-4-2020'],
+             taurus: ['20-4-2020', '20-5-2020'],
+             gemini: ['21-5-2020', '20-6-2020'],
+             cancer: ['21-6-2020', '22-7-2020'],
+             leo: ['23-7-2020', '22-8-2020'],
+             virgo: ['23-8-2020', '22-9-2020'],
+             libra: ['23-9-2020', '22-10-2020'],
+             scorpio: ['23-10-2020', '21-11-2020'],
+             sagittarius: ['22-11-2020', '21-12-2020'],
+             capricorn: ['22-12-2020', '19-1-2021'],
+            }
+        @astro_hash.each do |key, arr|
+            date_range = (Date.parse("#{arr[0]}")..Date.parse("#{arr[1]}")).map{|date| date.strftime("%m-%d")}
+            @astro_hash[key] = date_range
+        end
+    end
  
     def star_sign_finder
+        create_date_ranges
         sign = []
-        astro_hash = 
-            {Aquarius: (Date.parse('20-1-2020')..Date.parse('18-2-2020')).map{|date| date.strftime("%m-%d")},
-             Pisces: (Date.parse('19-2-2020')..Date.parse('20-3-2020')).map{|date| date.strftime("%m-%d")}, 
-             Aries: (Date.parse('21-3-2020')..Date.parse('19-4-2020')).map{|date| date.strftime("%m-%d")},
-             Taurus: (Date.parse('20-4-2020')..Date.parse('20-5-2020')).map{|date| date.strftime("%m-%d")},
-             Gemini: (Date.parse('21-5-2020')..Date.parse('20-6-2020')).map{|date| date.strftime("%m-%d")},
-             Cancer: (Date.parse('21-6-2020')..Date.parse('22-7-2020')).map{|date| date.strftime("%m-%d")},
-             Leo: (Date.parse('23-7-2020')..Date.parse('22-8-2020')).map{|date| date.strftime("%m-%d")},
-             Virgo: (Date.parse('23-8-2020')..Date.parse('22-9-2020')).map{|date| date.strftime("%m-%d")},
-             Libra: (Date.parse('23-9-2020')..Date.parse('22-10-2020')).map{|date| date.strftime("%m-%d")},
-             Scorpio: (Date.parse('23-10-2020')..Date.parse('21-11-2020')).map{|date| date.strftime("%m-%d")},
-             Sagittarius: (Date.parse('22-11-2020')..Date.parse('21-12-2020')).map{|date| date.strftime("%m-%d")},
-             Capricorn: (Date.parse('22-12-2020')..Date.parse('19-1-2021')).map{|date| date.strftime("%m-%d")}
-            }
-        astro_hash.each do |key, array|
-            if array.include?(self.birthday.match(/.....$/).to_s)
-                sign << "#{key}"
-                sign[0]
-            elsif self.birthday == nil || self.birthday == ""
-                puts "#{self.name} has asked the cosmos to keep their star sign confidential."
-                # puts "Would you like to choose another actor?", then loops back to actor list
+        if self.birthday == nil || self.birthday == ""
+            sign << "#{self.name} has asked the cosmos to keep their star sign confidential."
+            # puts "Would you like to choose another actor?", then loops back to actor list
+        else
+            @astro_hash.each do |key, arr|
+                arr.each {|el| sign << "#{key}".capitalize if el == self.birthday.match(/.....$/).to_s}
             end
-        end 
+        end
+        return sign[0]
     end
 
     def self.all

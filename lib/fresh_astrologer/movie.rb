@@ -1,5 +1,5 @@
 class Movie
-    attr_accessor :title, :lead_actor, :titles_arr
+    attr_reader :title, :lead_actor
 
     @@all = []
     @@titles_arr = []

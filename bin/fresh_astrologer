@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
-Dir["#{__dir__}/../lib/**/*.rb"].each {|file| require file }
 
-# require_relative '../lib/environment'
+require_relative '../lib/environment'
 
 # Scraper.new.scrape_wiki_for_birthday
 
-CLI.new.call
+FreshAstrologer::CLI.new.call
 
