@@ -11,8 +11,6 @@ class FreshAstrologer::CLI
     puts "----------"
     puts " "
     get_movie
-    get_actor
-    get_star_sign
   end
 
   def goodbye
