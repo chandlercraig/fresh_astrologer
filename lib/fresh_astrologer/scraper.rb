@@ -1,7 +1,7 @@
 class FreshAstrologer::Scraper
 
   def scrape_fresh_in_theaters
-    browser = Watir::Browser.new
+    browser = Watir::Browser.new :chrome, headless: true
     browser.goto("https://www.rottentomatoes.com/browse/cf-in-theaters")
     js_doc = browser.element(css: ".mb-movies").wait_until(&:present?)
     html_mov = Nokogiri::HTML(js_doc.inner_html)

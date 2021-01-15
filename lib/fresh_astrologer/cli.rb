@@ -4,6 +4,8 @@ class FreshAstrologer::CLI
     puts " "
     puts "Welcome to Fresh Astrologer, a Rotten Tomatoes™ trivia game for the new-age film buff!"
     puts " "
+    puts "Please wait while we find the highest reviewed movies in theaters now."
+    puts " "
     puts "----------"
     puts " "
     list_movie_titles
