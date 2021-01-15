@@ -15,6 +15,12 @@ class FreshAstrologer::CLI
     get_star_sign
   end
 
+  def goodbye
+    puts "Come back again soon! The stars thank you."
+    puts " "
+    exit
+  end
+
   def list_movie_titles
     FreshAstrologer::Scraper.new.scrape_wiki_for_birthday
     Movie.titles_arr.each_with_index {|movie, index| puts "#{index+1}. #{movie}"}
@@ -69,7 +75,7 @@ class FreshAstrologer::CLI
         puts " "
         puts "----------"
         puts " "
-        puts "No shame in that game! The lead actor in #{@@chosen_title} is #{@@lead_role}."
+        puts "No shame in that game."
         get_star_sign
       elsif guess == "exit" || guess == "Exit" || guess == "!"
         exit
@@ -94,6 +100,7 @@ class FreshAstrologer::CLI
     puts " "
     puts "----------"
     puts " "
+    puts "#{@@lead_role} is the lead actor in #{@@chosen_title}."
     puts "Time to guess #{@@lead_role}'s star sign to become a film trivia GOD!"
     puts " "
     puts "----------"
@@ -109,15 +116,9 @@ class FreshAstrologer::CLI
       puts "That's CORRECT!!! You are a true FILM TRIVIA GOD. All stand in awe of your power and majesty."
       puts " "
     else
-      puts "Incorrect. You lose."
+      puts "That answer was incorrect, but it's okay! This game is pretty hard :)"
     end
     goodbye
-    exit
-  end
-
-  def goodbye
-    puts "Come back again soon! The stars thank you."
-    puts " "
   end
 
 end
