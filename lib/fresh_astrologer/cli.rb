@@ -111,6 +111,9 @@ class FreshAstrologer::CLI
     @@chosen_sign = sign_arr[@@sign_index]
     if sign_guess == "exit" || sign_guess == "Exit" || sign_guess == "!"
       goodbye
+    elsif @starz_sign == nil
+      puts "#{@@lead_role} has asked the cosmos to keep their star sign confidential."
+      goodbye
     elsif @@chosen_sign == @starz_sign || @@chosen_sign == @starz_sign.downcase
       puts " "
       puts "----------"

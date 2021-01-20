@@ -31,7 +31,7 @@ class FreshAstrologer::Scraper
         bday = html.css(".bday").inner_html
         Actor.new(actor, bday, movie_title)
       end 
-    end 
+    end
   end
 
   

@@ -34,13 +34,8 @@ class Actor
     def star_sign_finder
         create_date_ranges
         sign = []
-        if self.birthday == nil || self.birthday == ""
-            sign << "#{self.name} has asked the cosmos to keep their star sign confidential."
-            # puts "Would you like to choose another actor?", then loops back to actor list
-        else
-            @astro_hash.each do |key, arr|
-                arr.each {|el| sign << "#{key}".capitalize if el == self.birthday.match(/.....$/).to_s}
-            end
+        @astro_hash.each do |key, arr|
+            arr.each {|el| sign << "#{key}".capitalize if el == self.birthday.match(/.....$/).to_s}
         end
         return sign[0]
     end
