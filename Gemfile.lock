@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     fresh_astrologer (0.1.0)
+      curb
       nokogiri
       watir
 
@@ -10,13 +11,18 @@ GEM
   specs:
     childprocess (3.0.0)
     coderay (1.1.3)
+    curb (0.9.11)
+    date (3.1.1)
     method_source (1.0.0)
-    mini_portile2 (2.4.0)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    mini_portile2 (2.5.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    open-uri (0.1.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    racc (1.5.2)
     rake (10.5.0)
     regexp_parser (1.8.2)
     rubyzip (2.3.0)
@@ -32,9 +38,11 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
+  date
   fresh_astrologer!
+  open-uri
   pry
   rake (~> 10.0)
 
 BUNDLED WITH
-   2.2.3
+   2.2.5

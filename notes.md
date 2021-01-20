@@ -1,24 +1,32 @@
-The “Certified Fresh Astrologer” trivia game
+The “Fresh Astrologer” trivia game
 
 - Scrapes Rotten Tomatoes for Certified Fresh in-theaters movie titles at https://www.rottentomatoes.com/browse/cf-in-theaters/
-- Displays all titles
-- Asks CLI user which film they’d like to play the game with, and request input
+- Displays all movie titles
+- Asks CLI user which film they’re interested in and gets user input
 - Receives movie title input
-- Uses movie title to query MediaWiki API and parse page for director’s name
-- Asks user if they would like to guess the director’s name or pass this challenge. If “guess”, prompt user for name input. If “pass”, display director’s name.
-- Uses each director’s name to query MediaWiki API and parse page for director’s birthday.
-- Matches birthday to star sign (hard code star signs)
-- Asks user to guess director’s star sign, and request input.
-- If correct, displays “win” message. If incorrect, display “try again” message which asks if user would like to guess again, choose another title, or exit the game.
+- Uses movie title to scrape corresponding Rotten Tomatoes page for lead actor's name
+- Asks user if they would like to guess the lead actor’s name or pass this challenge. If “guess”, prompt user for name input. If “pass”, display actor’s name.
+- Uses each actor’s name to scrape actor's Wikipedia page and parse page for actor’s birthday.
+- Matches birthday to star sign (hard codes star signs and their date ranges)
+- Asks user to guess actor’s star sign, and gets user input.
+- If user input is correct, displays “win” message. If incorrect, display “try again” message which asks if user would like to guess again, choose another title, or exit the game.
 
 Classes
 - Movie
-    - belongs to director
-    - has title
-- Director
-    - has movie
-    - has birthday
-    - has star sign
+    - Has lead actor
+    - Has title
+- Actor
+    - Belongs to movie
+    - Has birthday
+    - Has star sign
 - CertifiedFreshAstrologer::CLI
+    - Says hello
+    - Lists movies
+    - Gets movie
+    - Gets actor
+    - Gets star sign
+    - Says goodbye
 - Scraper
-- API
+    - First #method scrapes Rotten Tomatoes Certified Fresh page
+    - Second #method scrapes Rotten Tomatoes individual movie pages
+    - Third #method scrapes actor's Wikipedia page 
