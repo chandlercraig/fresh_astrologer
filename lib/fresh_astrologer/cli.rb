@@ -33,11 +33,11 @@ class FreshAstrologer::CLI
     movie_number = gets.strip
     @@movie_index = movie_number.to_i - 1
     @@chosen_title = Movie.all[@@movie_index].title
-    if Movie.titles_arr.include? (@@chosen_title)
-      get_actor
-    elsif movie_number == "exit" || movie_number == "Exit" || movie_number == "!"
+    if movie_number == "exit" || movie_number == "Exit" || movie_number == "!"
       goodbye
-    else
+    elsif Movie.titles_arr.include? (@@chosen_title)
+      get_actor
+    elsif !Movie.titles_arr.include? (@@chosen_title)
       puts "Invalid entry!"
       get_movie
     end
@@ -56,7 +56,9 @@ class FreshAstrologer::CLI
     else 
       puts "Would you like to guess who the lead actor is? (enter y or n)"
       guess = gets.strip
-      if guess == "y" || guess == "Y" || guess == "yes" || guess == "Yes"
+      if guess == "exit" || guess == "Exit" || guess == "!"
+        goodbye
+      elsif guess == "y" || guess == "Y" || guess == "yes" || guess == "Yes"
         puts "Enter actor's name below:"
         @actor_name = gets.strip
         if @@lead_role == @actor_name
@@ -77,8 +79,6 @@ class FreshAstrologer::CLI
         puts " "
         puts "No shame in that game."
         get_star_sign
-      elsif guess == "exit" || guess == "Exit" || guess == "!"
-        exit
       else
         puts "invalid entry"
         get_actor
@@ -109,7 +109,9 @@ class FreshAstrologer::CLI
     sign_guess = gets.strip
     @@sign_index = sign_guess.to_i - 1
     @@chosen_sign = sign_arr[@@sign_index]
-    if @@chosen_sign == @starz_sign || @@chosen_sign == @starz_sign.downcase
+    if sign_guess == "exit" || sign_guess == "Exit" || sign_guess == "!"
+      goodbye
+    elsif @@chosen_sign == @starz_sign || @@chosen_sign == @starz_sign.downcase
       puts " "
       puts "----------"
       puts " "
