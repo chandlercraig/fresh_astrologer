@@ -10,6 +10,7 @@ require 'nokogiri'
 require 'pry'
 require 'curb'
 require 'date'
+require 'bundler/setup'
 
 module FreshAstrologer
   class Error < StandardError; end
